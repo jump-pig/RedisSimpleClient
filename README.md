@@ -14,6 +14,8 @@ delphiredisclient 用上了工厂模式等 oop 技术， 但我觉得它对 redi
 
 两相比较， RedisSimpleClient 提供了更可控的 API 交互模式。
 
+由于新 DELPHI 的 string 为 2byte wideChar，所以提供了 tBytes 的参数以便提交 utf8 的文本。初始化时指定一个 utf8 之类的编码，RedisSimpleClient 会在接收到数据后，自动做编码转换。
+
 server 开发的要求是严谨的，这个客户端被设计成自动连接的工作模式，它会自己判断并一直维系连接的可靠性。
 
 对于 redis db index （数据库索引）的维持，也是自动化的，指定 forceDbIndex = y 即可， 当TCP重连的时候，它会保证你依然连接到指定的 db index。
@@ -29,12 +31,12 @@ server 开发的要求是严谨的，这个客户端被设计成自动连接的�
   
 操作代码如下：
 
-    if cli.Get('ok') then  //ok exist
+    if cli.Get('ok') then  //cmd is call success
     begin
-      if cli.ResValue.ValueTypeIsBulk then  //ok have data
+      if cli.ResValue.ValueTypeIsBulk then  //value of key : ok have data
         add('get(ok)= ' + cli.ResValue.GetBulkAsString)  
       else
-      if cli.ResValue.ValueTypeIsNullBulk then  //value of ok is null
+      if cli.ResValue.ValueTypeIsNullBulk then  //value of key : ok is null
         add('get(ok)=  null');
     end;
     
