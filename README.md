@@ -14,7 +14,7 @@ delphiredisclient 用上了工厂模式等 oop 技术， 但我觉得它对 redi
 
 两相比较， RedisSimpleClient 提供了更可控的 API 交互模式。
 
-由于新 DELPHI 的 string 为 2byte wideChar，所以提供了 tBytes 的参数以便提交 utf8 的文本。初始化时指定一个 utf8 之类的编码，RedisSimpleClient 会在接收到数据后，自动做编码转换。
+由于新 DELPHI 的 string 为 2byte wideChar，所以提供了 tBytes 类型的参数以便提交 utf8 的文本。控件初始化的时候，指定一个 TEncoding.UTF8 编码，RedisSimpleClient 会在接收到数据后，自动做编码转换。
 
 server 开发的要求是严谨的，这个客户端被设计成自动连接的工作模式，它会自己判断并一直维系连接的可靠性。
 
