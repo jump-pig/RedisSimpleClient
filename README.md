@@ -7,17 +7,19 @@ a simple redis client
 
 这个客户端只在我自己的一个项目上运行。至今还没发觉有 BUG。
 
-这个客户端的代码借鉴了 dephiredisclient：
+代码借鉴了 dephiredisclient：
 
 https://github.com/danieleteti/delphiredisclient
 
-delphiredisclient 用工厂模式等最先进的 oop 对 redis client 做了封装， 但我觉得它对 redis 的通讯理解（包括事务）有点不对。所以重新封装了这一个客户端。
+delphiredisclient 用上了工厂模式等 oop 技术， 但我觉得它对 redis 的通讯理解（包括事务）有点不对。所以重新封装了这一个客户端。
 
-目前只是封装了我用到的一些命令，如果你需要的命令不在列，请参考 delphiredisclient，把命令追加上去。
+两相比较， RedisSimpleClient 提供了更有把控的 API。
 
-server 开发的要求是严谨的，所以这个客户端甚至是免主动连接的，它会自己判断并且一直维系连接的可靠性。
+server 开发的要求是严谨的，这个客户端被设计成自动连接的工作模式，它会自己判断并一直维系连接的可靠性。
 
-对于 redis db index （数据库索引）的维持，也是自动化的，初始化的代码如下：
+对于 redis db index （数据库索引）的维持，也是自动化的，指定 forceDbIndex = y 即可， 当TCP重连的时候，它会保证你依然连接到指定的 db index。
+
+初始化的代码如下：
 
     cli := TRedisSimpleClient.Create( TEncoding.UTF8);
     cli.Host := '127.0.0.1';
@@ -50,5 +52,7 @@ TRedisValueType = (rvtNone, rvtErr, rvtNullArray, rvtNullBulk, rvtOK, rvtQueued,
     cli.HSet('h', 'f1', 'multiset v');
     cli.HSet('h', 'f2', 'multiset 2');
     cli.Exec;
+  
+目前只是封装了常用的命令，如果你需要的不在列，请参考 delphiredisclient，把命令追加上去（很容易做到）。  
   
 介绍完毕
