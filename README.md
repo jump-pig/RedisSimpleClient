@@ -3,6 +3,8 @@ a simple redis client
 
 一个简单小巧的 redis 客户端， 封装了常用的功能，包括 hash set 和 get， queue 之类的命令，也包括事务 Watch unWatch。
 
+核心单元： uRedisSimpleClient.pas
+
 这个客户端只在我自己的一个项目上运行。至今还没发觉有 BUG。
 
 这个客户端的代码借鉴了 dephiredisclient：
