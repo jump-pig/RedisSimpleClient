@@ -50,7 +50,7 @@ TRedisValueType = (rvtNone, rvtErr, rvtNullArray, rvtNullBulk, rvtOK, rvtQueued,
 普通情况下，Set 指令这么执行：    
 
     SetOK := cli.Set_('ok', 'abc') and (cli.ResValue.ValueType = TRedisValue._Set_);
-    const TRedisValue._Set = TRedisValueType.rvtOK    
+    //note: const TRedisValue._Set = TRedisValueType.rvtOK    
 
 在 watch multi 的时候（事务模式），代码应该换成这样：
 
