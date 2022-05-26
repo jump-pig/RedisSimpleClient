@@ -41,12 +41,12 @@ TRedisValueType = (rvtNone, rvtErr, rvtNullArray, rvtNullBulk, rvtOK, rvtQueued,
     
 事务的执行是这样的：
 
-  cli.Watch(['ok']);
-  cli.Get('ok');
-  cli.Multi;
-  cli.Set_('no', '2');
-  cli.HSet('h', 'f1', 'multiset v');
-  cli.HSet('h', 'f2', 'multiset 2');
-  cli.Exec;
+    cli.Watch(['ok']);
+    cli.Get('ok');
+    cli.Multi;
+    cli.Set_('no', '2');
+    cli.HSet('h', 'f1', 'multiset v');
+    cli.HSet('h', 'f2', 'multiset 2');
+    cli.Exec;
   
 介绍完毕
