@@ -48,3 +48,5 @@ TRedisValueType = (rvtNone, rvtErr, rvtNullArray, rvtNullBulk, rvtOK, rvtQueued,
   cli.HSet('h', 'f1', 'multiset v');
   cli.HSet('h', 'f2', 'multiset 2');
   cli.Exec;
+  
+介绍完毕
