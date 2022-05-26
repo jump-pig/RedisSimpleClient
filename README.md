@@ -1,5 +1,4 @@
-# Delphi-Redis-Client
-a simple redis client
+# Redis simple client
 
 一个简单小巧的 redis 客户端， 封装了常用的功能，包括 hash set 和 get， queue 之类的命令，也包括事务 Watch unWatch。
 
