@@ -12,7 +12,7 @@ https://github.com/danieleteti/delphiredisclient
 
 delphiredisclient 用上了工厂模式等 oop 技术， 但我觉得它对 redis 的通讯理解（包括事务）有点不对。所以重新封装了这一个客户端。
 
-两相比较， RedisSimpleClient 提供了更有把控的 API。
+两相比较， RedisSimpleClient 提供了更有可控的 API 交互模式。
 
 server 开发的要求是严谨的，这个客户端被设计成自动连接的工作模式，它会自己判断并一直维系连接的可靠性。
 
