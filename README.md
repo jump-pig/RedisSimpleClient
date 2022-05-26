@@ -40,9 +40,23 @@ server 开发的要求是严谨的，这个客户端被设计成自动连接的�
         add('get(ok)=  null');
     end;
     
-你会注意到： redis 在执行一个命令后， 就会返回一个固定的数据类型，我把它封装在了 cli.ResValue, cli.resValue.ValueType:
+你会注意到： redis 在执行一个命令后， 就会返回一个数据类型，我把它封装在了 cli.ResValue。
+
+cli.resValue.ValueType = TRedisValueType
 
 TRedisValueType = (rvtNone, rvtErr, rvtNullArray, rvtNullBulk, rvtOK, rvtQueued, rvtInt, rvtBulk, rvtArray);
+    
+
+普通情况下，Set 指令这么执行：    
+
+    SetOK := cli.Set_('ok', 'abc') and (cli.ResValue.ValueType = TRedisValue._Set_);
+    const TRedisValue._Set = TRedisValueType.rvtOK    
+
+在 watch multi 的时候（事务模式），代码应该换成这样：
+
+    SetOK := cli.Set_('ok', 'abc') and (cli.ResValue.ValueType = TRedisValueType.rvtQueued);
+    
+Redis 普通情况下返回 ok，但在事务中返回的是 queue。
     
 事务的执行是这样的：
 
