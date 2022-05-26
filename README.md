@@ -27,14 +27,14 @@ server 开发的要求是严谨的，这个客户端被设计成自动连接的�
     cli.AuthUserName := '000000';
     cli.ForceDbIndex := -1;
   
-至于操作代码是这样的：
+操作代码如下：
 
-    if cli.Get('ok') then
+    if cli.Get('ok') then  //ok exist
     begin
-      if cli.ResValue.ValueTypeIsBulk then
-        add('get(ok)= ' + cli.ResValue.GetBulkAsString)
+      if cli.ResValue.ValueTypeIsBulk then  //ok have data
+        add('get(ok)= ' + cli.ResValue.GetBulkAsString)  
       else
-      if cli.ResValue.ValueTypeIsNullBulk then
+      if cli.ResValue.ValueTypeIsNullBulk then  //value of ok is null
         add('get(ok)=  null');
     end;
     
